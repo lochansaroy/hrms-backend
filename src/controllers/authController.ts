@@ -99,15 +99,15 @@ import prisma from '../utils/prisma.js';
 // }
 
 export const login = async (req: Request, res: Response) => {
-    const { employeeId, password } = req.body
+    const { hrmsId, password } = req.body
     try {
 
-        if (!employeeId || !password) {
+        if (!hrmsId || !password) {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
         const user = await prisma.user.findFirst({
             where: {
-                employeeId
+                hrmsId
             }
         });
         if (!user) {

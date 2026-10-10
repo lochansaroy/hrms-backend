@@ -177,11 +177,11 @@ export const getUserById = async (req: Request, res: Response) => {
     }
 };
 
-export const getUserbyHRMS = async (req: Request, res: Response) => {
-    const { hrmsId } = req.body
+export const getUserbyEmpoyeeId = async (req: Request, res: Response) => {
+    const { employeeId } = req.body
     try {
-        const user = await prisma.user.findFirst({
-            where: { hrmsId: hrmsId },
+        const user = await prisma.user.findUnique({
+            where: { employeeId },
         });
 
         if (!user) {
@@ -194,7 +194,7 @@ export const getUserbyHRMS = async (req: Request, res: Response) => {
             photoUrl: user.photoUrl
         });
     } catch (error) {
-        console.error(`Error fetching user with ID ${hrmsId}:`, error);
+        console.error(`Error fetching user with ID ${employeeId}:`, error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 };

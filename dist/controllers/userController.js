@@ -122,11 +122,11 @@ export const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, funct
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 });
-export const getUserbyHRMS = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { hrmsId } = req.body;
+export const getUserbyEmpoyeeId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { employeeId } = req.body;
     try {
-        const user = yield prisma.user.findFirst({
-            where: { hrmsId: hrmsId },
+        const user = yield prisma.user.findUnique({
+            where: { employeeId },
         });
         if (!user) {
             return res.status(404).json({ message: 'User not found.' });
@@ -138,7 +138,7 @@ export const getUserbyHRMS = (req, res) => __awaiter(void 0, void 0, void 0, fun
         });
     }
     catch (error) {
-        console.error(`Error fetching user with ID ${hrmsId}:`, error);
+        console.error(`Error fetching user with ID ${employeeId}:`, error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 });

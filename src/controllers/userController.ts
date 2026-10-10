@@ -178,7 +178,7 @@ export const getUserById = async (req: Request, res: Response) => {
 };
 
 export const getUserbyEmpoyeeId = async (req: Request, res: Response) => {
-    const { employeeId } = req.body
+    const { employeeId } = req.params
     try {
         const user = await prisma.user.findUnique({
             where: { employeeId },

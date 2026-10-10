@@ -177,25 +177,47 @@ export const getUserById = async (req: Request, res: Response) => {
     }
 };
 
-export const getUserbyEmpoyeeId = async (req: Request, res: Response) => {
-    const { employeeId } = req.params
+export const getUserbyEmpoyeeId = async (
+    req: Request,
+    res: Response
+) => {
+    const { employeeId } = req.params;
+    console.log("Employee ID:", employeeId);
+
     try {
-        const user = await prisma.user.findUnique({
+        if (!employeeId) {
+            return res.status(400).json({
+                success: false,
+                message: "Employee ID is required.",
+            });
+        }
+
+        const user = await prisma.user.findFirst({
             where: { employeeId },
         });
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found.' });
+            return res.status(404).json({
+                success: false,
+                message: "User not found.",
+            });
         }
 
         return res.status(200).json({
             success: true,
             data: user,
-            photoUrl: user.photoUrl
+            photoUrl: user.photoUrl,
         });
     } catch (error) {
-        console.error(`Error fetching user with ID ${employeeId}:`, error);
-        return res.status(500).json({ message: 'Internal Server Error' });
+        console.error(
+            `Error fetching user with employee ID ${employeeId}:`,
+            error
+        );
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
     }
 };
 export const getFamily = async (req: Request, res: Response) => {

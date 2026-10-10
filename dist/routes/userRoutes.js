@@ -5,7 +5,7 @@ router.get("/get-user/:id", getUserById);
 router.get("/get-family/:id", getFamily);
 router.get("/get-nominee/:id", getNominee);
 router.get("/get-bank/:id", getBankDetails);
-router.get("/get-user", getUserbyEmpoyeeId);
+router.get("/get-user/:id", getUserbyEmpoyeeId);
 router.get("/detele-user", deleteUser);
 router.patch('/:employeeId/reset-password', resetPassword);
 export default router;

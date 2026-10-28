@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteUser, getBankDetails, getFamily, getNominee, getUserbyEmpoyeeId, getUserById, resetPassword } from "../controllers/userController.js";
+import { createUser, deleteUser, getBankDetails, getFamily, getNominee, getUserbyEmpoyeeId, getUserById, resetPassword } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.get("/get-bank/:id", getBankDetails)
 router.get("/get-user/:id", getUserbyEmpoyeeId)
 router.get("/detele-user", deleteUser)
 router.patch('/:employeeId/reset-password', resetPassword)
+router.post("/create-user", createUser)
 
 
 

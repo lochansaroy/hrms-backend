@@ -87,14 +87,14 @@ import prisma from '../utils/prisma.js';
 //     }
 // }
 export const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { employeeId, password } = req.body;
+    const { hrmsId, password } = req.body;
     try {
-        if (!employeeId || !password) {
+        if (!hrmsId || !password) {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
         const user = yield prisma.user.findFirst({
             where: {
-                employeeId
+                hrmsId
             }
         });
         if (!user) {

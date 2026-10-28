@@ -18,7 +18,8 @@ export const createUser = async (req: Request, res: Response) => {
     try {
         const adminId = req.params.adminId as string;
 
-        const { familyMembers,
+        const {
+            familyMembers,
 
             employeeId,
             name,

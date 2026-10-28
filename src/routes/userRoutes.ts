@@ -12,7 +12,7 @@ router.get("/get-bank/:id", getBankDetails)
 router.get("/get-user/:id", getUserbyEmpoyeeId)
 router.get("/detele-user", deleteUser)
 router.patch('/:employeeId/reset-password', resetPassword)
-router.post("/create-user", createUser)
+router.post("/create-user/:adminId", createUser)
 
 
 
